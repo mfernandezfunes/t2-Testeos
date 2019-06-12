@@ -4,7 +4,7 @@
   "description": "Testeos de APis Sistema de Visitas",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*.js --timeout 15000"
+    "test": "mocha test/visita.js --timeout 15000"
   },
   "author": "Martin Fernandez Funes",
   "license": "ISC",
