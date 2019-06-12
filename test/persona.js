@@ -24,7 +24,6 @@ describe('POST una persona : ', () => {
                 image: null
             })
             .end(function (err, res) {
-                //console.log(res.body)
                 expect(res).to.have.status(200);
                 done();
             });
@@ -50,14 +49,13 @@ describe('UPDATE una persona con id 5cf5b43c92c70c03cd240ca5: ', () => {
             });
     });
 });
-describe('PUT foto de una persona: ', () => { //verrr
+describe('PUT foto de una persona: ', () => {
     it('Deberia ingresar la foto de una persona', (done) => {
         chai.request(url)
             .post('/persona/5cf5b43c92c70c03cd240ca5/foto')
             .attach('image', fs.readFileSync('./test/fotos/99999999.jpg'), '99999999.jpg')
             .send()
             .end(function (err, res) {
-                //console.log(res.body)
                 expect(res).to.have.status(200);
                 done();
             });
@@ -79,7 +77,16 @@ describe('GET la persona con id 5cf5b47b92c70c03cd240cc3: ', () => {
         chai.request(url)
             .get('/persona/5cf5b47b92c70c03cd240cc3')
             .end(function (err, res) {
-                //expect(res.body).to.have.property('_id').to.be.equal('5cf5b47b92c70c03cd240cc3');
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
+describe('DELETE la persona con id : ', () => {
+    it('Deberia traer todos las personas', (done) => {
+        chai.request(url)
+            .delete('/persona/5cf5b43c92c70c03cd240ca5')
+            .end(function (err, res) {
                 expect(res).to.have.status(200);
                 done();
             });

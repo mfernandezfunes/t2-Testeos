@@ -65,3 +65,13 @@ describe('GET la empresa con id 5cf853e10df6935975621379: ', () => {
             });
     });
 });
+describe('DELETE la empresa con id : ', () => {
+    it('Deberia elimnar la empresa por id', (done) => {
+        chai.request(url)
+            .delete('/empresa/5cf5b43c92c70c03cd240ca5')
+            .end(function (err, res) {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
