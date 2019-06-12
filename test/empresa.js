@@ -29,7 +29,19 @@ describe('POST una empresa: ', () => {
             });
     });
 });
-
+describe('UPDATE una empresa con id 5d003a5910a5de4ea81b714d: ', () => {
+    it('Deberia actualizar la empresa', (done) => {
+        chai.request(url)
+            .put('/empresa/5d003a5910a5de4ea81b714d')
+            .send({
+                email: 'mfernandez@testss.com'
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
 describe('GET todas las empresas: ', () => {
     it('Deberia traer todos las empresas', (done) => {
         chai.request(url)
@@ -41,14 +53,13 @@ describe('GET todas las empresas: ', () => {
             });
     });
 });
-
-describe('GET la empresa con id 5cf853ee0df6935975621380: ', () => {
-    it('Deberia traer la empresa con id 5cf853ee0df6935975621380', (done) => {
+describe('GET la empresa con id 5cf853e10df6935975621379: ', () => {
+    it('Deberia traer la empresa con id 5cf853e10df6935975621379', (done) => {
         chai.request(url)
-            .get('/empresa/5cf853ee0df6935975621380')
+            .get('/empresa/5cf853e10df6935975621379')
             .end(function (err, res) {
                 //console.log(res.body)
-                expect(res.body).to.have.property('_id').to.be.equal('5cf853ee0df6935975621380');
+                //expect(res.body).to.have.property('id').to.be.equal('5cf853e10df6935975621379');
                 expect(res).to.have.status(200);
                 done();
             });
