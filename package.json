@@ -1,0 +1,16 @@
+{
+  "name": "testbackend",
+  "version": "1.0.0",
+  "description": "Testeos de APis Sistema de Visitas",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.js --timeout 15000"
+  },
+  "author": "Martin Fernandez Funes",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.1.4"
+  }
+}
