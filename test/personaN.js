@@ -2,15 +2,18 @@
 
 const chai = require('chai')
 const chaiHttp = require('chai-http')
+const fetch = require('node-fetch')
 const expect = require('chai').expect
 const fs = require('fs')
 
 chai.use(chaiHttp);
+
 let resultadoId
+
 const url = 'http://localhost:3700/api';
 
 describe('POST una persona : ', () => {
-    it('Deberia ingresar la visita', (done) => {
+    it('Deberia ingresar la visita', async (done) => {
         chai.request(url)
             .post('/persona')
             .send({
@@ -25,6 +28,7 @@ describe('POST una persona : ', () => {
             })
             .end(function (err, res) {
                 resultadoId = res.body.persona._id
+                expect(res.statusCode).to.be.equal(200);
                 expect(res).to.have.status(200);
                 done();
             });
@@ -46,49 +50,6 @@ describe('UPDATE una persona con id 5cf5b43c92c70c03cd240ca5: ', () => {
                 activo: true,
                 image: "JXbtjTiutYLxd0rmEi9akE-Z.png"
             })
-            .end(function (err, res) {
-                expect(res).to.have.status(200);
-                done();
-            });
-    });
-});
-describe('PUT foto de una persona: ', () => {
-    it('Deberia ingresar la foto de una persona', (done) => {
-        chai.request(url)
-            .post('/persona/5cf5b43c92c70c03cd240ca5/foto')
-            .attach('image', fs.readFileSync('./test/fotos/99999999.jpg'), '99999999.jpg')
-            .send()
-            .end(function (err, res) {
-                expect(res).to.have.status(200);
-                done();
-            });
-    });
-});
-describe('GET todas las personas: ', () => {
-    it('Deberia traer todos las personas', (done) => {
-        chai.request(url)
-            .get('/persona/')
-            .end(function (err, res) {
-                //console.log(res.body)
-                expect(res).to.have.status(200);
-                done();
-            });
-    });
-});
-describe('GET la persona con id 5cf5b47b92c70c03cd240cc3: ', () => {
-    it('Deberia traer la persona con id 5cf5b47b92c70c03cd240cc3', (done) => {
-        chai.request(url)
-            .get('/persona/5cf5b47b92c70c03cd240cc3')
-            .end(function (err, res) {
-                expect(res).to.have.status(200);
-                done();
-            });
-    });
-});
-describe('DELETE la persona con id : ', () => {
-    it('Deberia traer todos las personas', (done) => {
-        chai.request(url)
-            .delete('/persona/5cf5b43c92c70c03cd240ca5')
             .end(function (err, res) {
                 expect(res).to.have.status(200);
                 done();
